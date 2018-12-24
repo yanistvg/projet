@@ -1,7 +1,8 @@
 <?php
-$table = array();
-$table[0] = "users";
-$table[1] = "test";
+$table = array(
+    0 => "users",
+    1 => "test"
+);
 $serveurName = "localhost";
 $username = "root";
 $userpass = "";
