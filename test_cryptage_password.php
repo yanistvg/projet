@@ -1,10 +1,24 @@
 <?php
-$phrase = "123456789";
-$c = cryptage($phrase);
-echo $c;
+SESSION_START();
+if (!isset($_SESSION["user"]) && !isset($_GET["user"]))
+    form();
+elseif(isset($_SESSION["pass"]) || isset($_GET["pass"]))
+    if(isset($_GET["user"]) && $_GET["user"]=="admin" && isset($_GET["pass"]) && $_GET["pass"] == "1234")
+    {
+        $_SESSION["user"] = $_GET["user"];
+        $_SESSION["pass"] = $_GET["pass"];
+    }
+elseif ($_SESSION["user"]=="admin" && $_SESSION["pass"] == "1234")
+{
+    if (isset($_GET["crypt"]))
+        echo cryptage($_GET["crypt"]);
+    else
+        form2();
+}
+else
+    header("test_cryptage_password.php");
 
-
-function cryptage($phrase) 
+function cryptage($phrase)
 {
     $i = 0;
     $val=0;
@@ -63,5 +77,29 @@ function cryptage($phrase)
         $buffer = substr($phrase, 0, 3);
     }
     return $phrase;
+}
+
+function form()
+{
+    ?>
+        <form action="#" method="GET">
+            <label>username : </label>
+            <input name="user"><br />
+            <label>password : </label>
+            <input type="password" name="pass">
+            <input type="submit">
+        </form>
+    <?php
+}
+
+function form2()
+{
+    ?>
+        <form action="#" method="GET">
+            <label>mot de passe a crypté : </label>
+            <input name="crypt"><br />
+            <input type="submit">
+        </form>
+    <?php
 }
 ?>
