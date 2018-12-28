@@ -8,7 +8,6 @@ function cryptage($phrase)
 {
     $i = 0;
     $val=0;
-    $nombreCrypt=1;
     $conpareson = '404';
     $buf = strlen($phrase);
     $phrase = sha1($phrase);
@@ -24,7 +23,6 @@ function cryptage($phrase)
     while ($i < $val)
     {
         $phrase = sha1($phrase);
-        $nombreCrypt++;
         $i++;
     }
     $phrase = substr($phrase, 0, $buf);
@@ -33,7 +31,6 @@ function cryptage($phrase)
     {
         $phrase = md5($phrase);
         $buffer = substr($phrase, 0, 3);
-        $nombreCrypt++;
     }
     $conpareson = '504';
     $buffer = substr($phrase, 0, 3);
@@ -41,7 +38,6 @@ function cryptage($phrase)
     {
         $phrase = md5($phrase);
         $buffer = substr($phrase, 0, 3);
-        $nombreCrypt++;
     }
     $i=0;
     $val=0;
@@ -57,7 +53,6 @@ function cryptage($phrase)
     while ($i < $val)
     {
         $phrase = sha1($phrase);
-        $nombreCrypt++;
         $i++;
     }
     $conpareson = '404';
@@ -66,9 +61,7 @@ function cryptage($phrase)
     {
         $phrase = md5($phrase);
         $buffer = substr($phrase, 0, 3);
-        $nombreCrypt++;
     }
-    echo '<p>'.$nombreCrypt.'</p>';
     return $phrase;
 }
 ?>
